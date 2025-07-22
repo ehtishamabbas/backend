@@ -11,7 +11,7 @@ import {
 
 router.get('/', validateRequestMiddleware({
   city: { type: 'string', max: 100, required: false },
-  county: { type: 'string', max: 100, required: false },
+  country: { type: 'string', max: 100, required: false },
   min_price: { type: 'number', min: 0, required: false },
   max_price: { type: 'number', min: 0, required: false },
   property_type: { type: 'string', max: 100, required: false },
@@ -28,7 +28,7 @@ router.get('/', validateRequestMiddleware({
 
     // Parse query parameters
     const city = req.query.city;
-    const county = req.query.county;
+    const country = req.query.country;
     const minPrice = req.query.min_price ? parseFloat(req.query.min_price) : null;
     const maxPrice = req.query.max_price ? parseFloat(req.query.max_price) : null;
     const propertyType = req.query.property_type;
@@ -41,7 +41,7 @@ router.get('/', validateRequestMiddleware({
 
     // Build query
     const { query, seoQuery } = buildListingsQuery(
-      city, county, minPrice, maxPrice, propertyType, minBedrooms, minBathrooms, yearBuilt
+      city, country, minPrice, maxPrice, propertyType, minBedrooms, minBathrooms, yearBuilt
     );
 
     // Set sort order

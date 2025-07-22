@@ -70,7 +70,7 @@ function updateListingImages(listingKey, images) {
 /**
  * Build listings query based on filters
  * @param {string} city - City filter
- * @param {string} county - County filter
+ * @param {string} country - Country filter
  * @param {number} minPrice - Minimum price
  * @param {number} maxPrice - Maximum price
  * @param {string} propertyType - Property type
@@ -81,7 +81,7 @@ function updateListingImages(listingKey, images) {
  */
 function buildListingsQuery(
   city,
-  county,
+  country,
   minPrice,
   maxPrice,
   propertyType,
@@ -98,10 +98,10 @@ function buildListingsQuery(
     seoQuery.Location = city;
   }
 
-  if (county) {
-    query.county = county;
-    seoQuery['Location Type'] = 'County';
-    seoQuery.Location = county;
+  if (country) {
+    query.country = country;
+    seoQuery['Location Type'] = 'Country';
+    seoQuery.Location = country;
   }
 
   if (propertyType) {
@@ -156,7 +156,7 @@ function getListingsProjection() {
     city: 1,
     state_code: 1,
     postal_code: 1,
-    county: 1,
+    country: 1,
     description: 1,
     bedrooms: 1,
     bathrooms: 1,

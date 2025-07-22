@@ -14,15 +14,15 @@ router.get('/', validateRequestMiddleware({
     const suggestions = [];
 
     if (query) {
-      // County suggestions
-      const countyAggregation = await collections.locations.distinct('county', {
-        county: { $regex: new RegExp(query, 'i') }
+      // Country suggestions
+      const countryAggregation = await collections.locations.distinct('country', {
+        country: { $regex: new RegExp(query, 'i') }
       });
 
-      suggestions.push(...countyAggregation.map(county => ({
-        type: 'county',
-        text: county,
-        value: county
+      suggestions.push(...countryAggregation.map(country => ({
+        type: 'country',
+        text: country,
+        value: country
       })));
 
       // City suggestions

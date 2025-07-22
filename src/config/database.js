@@ -13,7 +13,7 @@ const collections = {
   listingType: null,
   seoContent: null,
   locations: null,
-  countiesImages: null
+  countriesImages: null
 };
 
 /**
@@ -33,7 +33,7 @@ async function connectToMongoDB() {
     collections.listingType = db.collection('listings_type');
     collections.seoContent = db.collection('seo_contents');
     collections.locations = db.collection('locations');
-    collections.countiesImages = db.collection('counties_images');
+    collections.countriesImages = db.collection('countries_images');
 
     return db;
   } catch (error) {

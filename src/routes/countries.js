@@ -6,24 +6,24 @@ import { convertObjectId } from '../models/listings.js';
 
 
 router.get('/images', validateRequestMiddleware({
-  county: { type: 'string', required: true },
+  country: { type: 'string', required: true },
   city: { type: 'string', required: false }
 }), async (req, res) => {
   try {
     const collections = getCollections();
-    const county = req.query.county;
+    const country = req.query.country;
     const city = req.query.city;
 
-    let countiesImages;
+    let countriesImages;
     if (city) {
-      countiesImages = await collections.countiesImages.find({ county, city }).toArray();
+      countriesImages = await collections.countriesImages.find({ country, city }).toArray();
     } else {
-      countiesImages = await collections.countiesImages.find({ county }).toArray();
+      countriesImages = await collections.countriesImages.find({ country }).toArray();
     }
 
-    res.json(convertObjectId(countiesImages));
+    res.json(convertObjectId(countriesImages));
   } catch (error) {
-    console.error(`Error fetching counties images: ${error}`);
+    console.error(`Error fetching countries images: ${error}`);
     res.status(500).json({ error: error.message });
   }
 });

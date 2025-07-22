@@ -3,7 +3,7 @@ import { createApp } from './config/server.js';
 // Import routes
 import listingsRoutes from './routes/listings.js';
 import autocompleteRoutes from './routes/autocomplete.js';
-import countiesRoutes from './routes/counties.js';
+import countriesRoutes from './routes/countries.js';
 import utilityRoutes from './routes/utility.js';
 
 /**
@@ -17,7 +17,7 @@ const initializeApp = async () => {
     // Register routes
     app.use('/api/listings', listingsRoutes);
     app.use('/api/autocomplete', autocompleteRoutes);
-    app.use('/api/counties', countiesRoutes);
+    app.use('/api/countries', countriesRoutes);
     app.use('/', utilityRoutes);
 
     console.log('App initialized successfully');
