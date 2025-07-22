@@ -1,55 +1,30 @@
 {
   "name": "back-nodejs",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js --server",
-    "crawler": "node index.js --crawler",
-    "dev": "nodemon index.js --server",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "node test_api.js",
-    "test:all": "node test_all.js",
-    "test:feature-parity": "node feature_parity_test.js",
-    "test:performance": "node performance_test.js",
-    "db:init": "node db_init.js",
-    "db:migrate": "node migrate_data.js",
-    "monitor": "node monitor.js",
-    "validate:env": "node validate_env.js",
-    "install:all": "bash install.sh",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "load-test": "node load_test.js"
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "real-estate",
     "listings",
-    "api",
-    "crawler"
+    "api"
   ],
   "author": "",
   "license": "ISC",
   "description": "Node.js backend for Real Estate Listings",
   "dependencies": {
-    "@google-cloud/storage": "^7.16.0",
     "axios": "^1.10.0",
-    "axios-retry": "^4.5.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-rate-limit": "^7.1.5",
     "helmet": "^7.1.0",
-    "jimp": "^0.22.12",
-    "moment": "^2.30.1",
-    "mongodb": "^6.5.0",
-    "mongoose": "^8.2.3",
-    "multer": "^1.4.5-lts.1",
-    "node-fetch": "^3.3.2",
-    "node-schedule": "^2.1.1",
-    "retry": "^0.13.1",
-    "sharp": "^0.33.3",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0",
-    "uuid": "^9.0.1",
-    "winston": "^3.17.0"
+    "mongodb": "^6.5.0"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
