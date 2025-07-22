@@ -54,7 +54,7 @@ function upsertListingInDb(listingData) {
  */
 function updateListingImages(listingKey, images) {
   const collections = getCollections();
-  
+
   return collections.listingImages.deleteMany({ listing_key: listingKey })
     .then(() => {
       if (images && images.length > 0) {
@@ -180,13 +180,13 @@ function getListingsProjection() {
  */
 async function fetchImagesForListings(listingKeys) {
   const collections = getCollections();
-  
+
   const images = await collections.listingImages.find({
     listing_key: { $in: listingKeys }
   }).toArray();
 
   const imagesMap = {};
-  
+
   for (const image of images) {
     if (!imagesMap[image.listing_key]) {
       imagesMap[image.listing_key] = [];

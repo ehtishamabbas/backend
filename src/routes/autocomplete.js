@@ -3,23 +3,8 @@ const router = express.Router();
 const { validateRequestMiddleware } = require('../middleware/security');
 const { getCollections } = require('../config/database');
 const { convertObjectId } = require('../models/listings');
-const logger = require('../utils/logger');
 
-/**
- * @swagger
- * /api/autocomplete:
- *   get:
- *     summary: Get autocomplete suggestions for search
- *     parameters:
- *       - in: query
- *         name: query
- *         schema:
- *           type: string
- *         description: Search query
- *     responses:
- *       200:
- *         description: List of autocomplete suggestions
- */
+
 router.get('/', validateRequestMiddleware({
   query: { type: 'string', min: 1, max: 100, required: false }
 }), async (req, res) => {
@@ -68,7 +53,7 @@ router.get('/', validateRequestMiddleware({
 
     res.json(suggestions);
   } catch (error) {
-    logger.error(`Error in autocomplete: ${error}`);
+    console.error(`Error in autocomplete: ${error}`);
     res.status(500).json({ error: error.message });
   }
 });

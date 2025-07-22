@@ -1,6 +1,5 @@
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const logger = require('../utils/logger');
 
 /**
  * Configure security middleware for Express app
@@ -74,7 +73,7 @@ function validateRequestMiddleware(schema) {
 
       next();
     } catch (error) {
-      logger.error(`Validation error: ${error}`);
+      console.error(`Validation error: ${error}`);
       res.status(500).json({ error: 'Internal server error' });
     }
   };

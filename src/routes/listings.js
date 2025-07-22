@@ -2,80 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { validateRequestMiddleware } = require('../middleware/security');
 const { getCollections } = require('../config/database');
-const { 
-  convertObjectId, 
-  buildListingsQuery, 
+const {
+  convertObjectId,
+  buildListingsQuery,
   getListingsProjection,
   fetchImagesForListings
 } = require('../models/listings');
-const logger = require('../utils/logger');
 
-/**
- * @swagger
- * /api/listings:
- *   get:
- *     summary: Get listings with filtering and pagination
- *     parameters:
- *       - in: query
- *         name: city
- *         schema:
- *           type: string
- *         description: Filter by city name
- *       - in: query
- *         name: county
- *         schema:
- *           type: string
- *         description: Filter by county name
- *       - in: query
- *         name: min_price
- *         schema:
- *           type: number
- *         description: Minimum price
- *       - in: query
- *         name: max_price
- *         schema:
- *           type: number
- *         description: Maximum price
- *       - in: query
- *         name: property_type
- *         schema:
- *           type: string
- *         description: Property type
- *       - in: query
- *         name: min_bedrooms
- *         schema:
- *           type: integer
- *         description: Minimum number of bedrooms
- *       - in: query
- *         name: min_bathrooms
- *         schema:
- *           type: integer
- *         description: Minimum number of bathrooms
- *       - in: query
- *         name: year_built
- *         schema:
- *           type: integer
- *         description: Minimum year built
- *       - in: query
- *         name: skip
- *         schema:
- *           type: integer
- *         description: Number of items to skip (for pagination)
- *       - in: query
- *         name: limit
- *         schema:
- *           type: integer
- *         description: Number of items to return (max 1000)
- *       - in: query
- *         name: sort_by
- *         schema:
- *           type: string
- *           enum: [recommended, date-desc, price-asc, price-desc, area-desc]
- *         description: Sorting option
- *     responses:
- *       200:
- *         description: List of listings with pagination and SEO content
- */
 router.get('/', validateRequestMiddleware({
   city: { type: 'string', max: 100, required: false },
   county: { type: 'string', max: 100, required: false },
@@ -91,7 +24,7 @@ router.get('/', validateRequestMiddleware({
 }), async (req, res) => {
   try {
     const collections = getCollections();
-    
+
     // Parse query parameters
     const city = req.query.city;
     const county = req.query.county;
@@ -179,26 +112,16 @@ router.get('/', validateRequestMiddleware({
       limit: limit
     });
   } catch (error) {
-    logger.error(`Error fetching listings: ${error}`);
+    console.error(`Error fetching listings: ${error}`);
     res.status(500).json({ error: error.message });
   }
 });
 
-/**
- * @swagger
- * /api/listings/property-type:
- *   get:
- *     summary: Get available property types and subtypes
- *     responses:
- *       200:
- *         description: Property types and subtypes
- *       404:
- *         description: Property types not found
- */
+
 router.get('/property-type', async (req, res) => {
   try {
     const collections = getCollections();
-    
+
     const propertyTypes = await collections.listingType.findOne({ type: 'property_type' });
     const propertySubTypes = await collections.listingType.findOne({ type: 'property_sub_type' });
 
@@ -211,29 +134,12 @@ router.get('/property-type', async (req, res) => {
       property_sub_type: convertObjectId(propertySubTypes.values)
     });
   } catch (error) {
-    logger.error(`Error fetching property types: ${error}`);
+    console.error(`Error fetching property types: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
-/**
- * @swagger
- * /api/listings/{listingKey}:
- *   get:
- *     summary: Get a specific listing by key
- *     parameters:
- *       - in: path
- *         name: listingKey
- *         required: true
- *         schema:
- *           type: string
- *         description: Listing key
- *     responses:
- *       200:
- *         description: Listing details
- *       404:
- *         description: Listing not found
- */
+
 router.get('/:listingKey', async (req, res) => {
   try {
     const collections = getCollections();
@@ -278,7 +184,7 @@ router.get('/:listingKey', async (req, res) => {
 
     res.json(convertObjectId(listing));
   } catch (error) {
-    logger.error(`Error fetching listing ${req.params.listingKey}: ${error}`);
+    console.error(`Error fetching listing ${req.params.listingKey}: ${error}`);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

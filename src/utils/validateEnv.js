@@ -1,4 +1,4 @@
-const logger = require('./logger');
+// Environment validation utility
 
 /**
  * Validate required environment variables
@@ -13,7 +13,7 @@ function validateEnvironment() {
   const missingVars = requiredVars.filter(varName => !process.env[varName]);
 
   if (missingVars.length > 0) {
-    logger.error(`Missing required environment variables: ${missingVars.join(', ')}`);
+    console.error(`Missing required environment variables: ${missingVars.join(', ')}`);
     return false;
   }
 

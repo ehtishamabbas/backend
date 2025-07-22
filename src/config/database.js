@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb');
-const logger = require('../utils/logger');
 
 // MongoDB connection details
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/';
@@ -8,7 +7,7 @@ const DATABASE_NAME = process.env.DATABASE_NAME || 'listings_db';
 // Database collections
 let client;
 let db;
-let collections = {
+const collections = {
   listings: null,
   listingImages: null,
   listingType: null,
@@ -24,10 +23,10 @@ async function connectToMongoDB() {
   try {
     client = new MongoClient(MONGODB_URL);
     await client.connect();
-    logger.info('Connected to MongoDB');
+    console.log('Connected to MongoDB');
 
     db = client.db(DATABASE_NAME);
-    
+
     // Initialize collections
     collections.listings = db.collection('listings');
     collections.listingImages = db.collection('listing_images');
@@ -35,10 +34,10 @@ async function connectToMongoDB() {
     collections.seoContent = db.collection('seo_contents');
     collections.locations = db.collection('locations');
     collections.countiesImages = db.collection('counties_images');
-    
+
     return db;
   } catch (error) {
-    logger.error('MongoDB connection error:', error);
+    console.error('MongoDB connection error:', error);
     throw error;
   }
 }
@@ -49,7 +48,7 @@ async function connectToMongoDB() {
 async function closeConnection() {
   if (client) {
     await client.close();
-    logger.info('MongoDB connection closed');
+    console.log('MongoDB connection closed');
   }
 }
 
