@@ -20,6 +20,7 @@ router.get('/', validateRequestMiddleware({
   year_built: { type: 'number', min: 1800, required: false },
   skip: { type: 'number', min: 0, required: false },
   limit: { type: 'number', min: 1, max: 1000, required: false },
+  // eslint-disable-next-line max-len
   sort_by: { type: 'string', enum: ['recommended', 'date-desc', 'price-asc', 'price-desc', 'area-desc'], required: false }
 }), async (req, res) => {
   try {
