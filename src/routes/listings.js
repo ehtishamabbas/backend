@@ -1,13 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { validateRequestMiddleware } = require('../middleware/security');
-const { getCollections } = require('../config/database');
-const {
+import { validateRequestMiddleware } from '../middleware/security.js';
+import { getCollections } from '../config/database.js';
+import {
   convertObjectId,
   buildListingsQuery,
   getListingsProjection,
   fetchImagesForListings
-} = require('../models/listings');
+} from '../models/listings.js';
 
 router.get('/', validateRequestMiddleware({
   city: { type: 'string', max: 100, required: false },
@@ -190,4 +190,4 @@ router.get('/:listingKey', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

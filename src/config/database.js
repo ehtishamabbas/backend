@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+import { MongoClient } from 'mongodb';
 
 // MongoDB connection details
 const MONGODB_URL = process.env.MONGODB_URL || 'mongodb://localhost:27017/';
@@ -59,7 +59,7 @@ function getCollections() {
   return collections;
 }
 
-module.exports = {
+export {
   connectToMongoDB,
   closeConnection,
   getCollections

@@ -1,7 +1,7 @@
-require('dotenv').config();
-const { startServer } = require('./config/server');
-const { connectToMongoDB } = require('./config/database');
-const { initializeApp } = require('./app');
+import 'dotenv/config';
+import { startServer } from './config/server.js';
+import { connectToMongoDB } from './config/database.js';
+import { initializeApp } from './app.js';
 
 // Command line arguments
 const args = process.argv.slice(2);

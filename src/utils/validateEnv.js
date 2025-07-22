@@ -20,6 +20,6 @@ function validateEnvironment() {
   return true;
 }
 
-module.exports = {
+export {
   validateEnvironment
 };

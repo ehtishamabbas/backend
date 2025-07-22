@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const { validateEnvironment } = require('../utils/validateEnv');
-const { configureSecurityMiddleware } = require('../middleware/security');
+import express from 'express';
+import cors from 'cors';
+import { validateEnvironment } from '../utils/validateEnv.js';
+import { configureSecurityMiddleware } from '../middleware/security.js';
 
 // Server configuration
 const PORT = process.env.PORT || 3000;
@@ -45,7 +45,7 @@ async function startServer(app) {
   });
 }
 
-module.exports = {
+export {
   createApp,
   startServer
 };

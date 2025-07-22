@@ -1,5 +1,5 @@
-const { ObjectId } = require('mongodb');
-const { getCollections } = require('../config/database');
+import { ObjectId } from 'mongodb';
+import { getCollections } from '../config/database.js';
 
 /**
  * Convert ObjectId to string in objects
@@ -197,7 +197,7 @@ async function fetchImagesForListings(listingKeys) {
   return imagesMap;
 }
 
-module.exports = {
+export {
   convertObjectId,
   upsertListingInDb,
   updateListingImages,

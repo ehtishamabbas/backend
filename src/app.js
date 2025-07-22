@@ -1,10 +1,10 @@
-const { createApp } = require('./config/server');
+import { createApp } from './config/server.js';
 
 // Import routes
-const listingsRoutes = require('./routes/listings');
-const autocompleteRoutes = require('./routes/autocomplete');
-const countiesRoutes = require('./routes/counties');
-const utilityRoutes = require('./routes/utility');
+import listingsRoutes from './routes/listings.js';
+import autocompleteRoutes from './routes/autocomplete.js';
+import countiesRoutes from './routes/counties.js';
+import utilityRoutes from './routes/utility.js';
 
 /**
  * Initialize the application
@@ -28,6 +28,4 @@ const initializeApp = async () => {
   }
 };
 
-module.exports = {
-  initializeApp
-};
+export { initializeApp };

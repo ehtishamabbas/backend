@@ -1,5 +1,5 @@
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 
 /**
  * Configure security middleware for Express app
@@ -79,7 +79,7 @@ function validateRequestMiddleware(schema) {
   };
 }
 
-module.exports = {
+export {
   configureSecurityMiddleware,
   validateRequestMiddleware
 };

@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const { validateRequestMiddleware } = require('../middleware/security');
-const { getCollections } = require('../config/database');
-const { convertObjectId } = require('../models/listings');
+import { validateRequestMiddleware } from '../middleware/security.js';
+import { getCollections } from '../config/database.js';
+import { convertObjectId } from '../models/listings.js';
 
 
 router.get('/images', validateRequestMiddleware({
@@ -28,4 +28,4 @@ router.get('/images', validateRequestMiddleware({
   }
 });
 
-module.exports = router;
+export default router;

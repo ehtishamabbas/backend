@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const axios = require('axios');
-const { validateRequestMiddleware } = require('../middleware/security');
+import axios from 'axios';
+import { validateRequestMiddleware } from '../middleware/security.js';
 
 router.get('/proxy-image', validateRequestMiddleware({
   url: { type: 'string', required: true }
@@ -32,4 +32,4 @@ router.get('/health', (req, res) => {
   res.json({ status: 'healthy' });
 });
 
-module.exports = router;
+export default router;
