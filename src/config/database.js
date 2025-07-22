@@ -23,7 +23,6 @@ async function connectToMongoDB() {
   try {
     client = new MongoClient(MONGODB_URL);
     await client.connect();
-    console.log('Connected to MongoDB');
 
     db = client.db(DATABASE_NAME);
 
@@ -48,7 +47,6 @@ async function connectToMongoDB() {
 async function closeConnection() {
   if (client) {
     await client.close();
-    console.log('MongoDB connection closed');
   }
 }
 
